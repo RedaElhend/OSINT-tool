@@ -5,14 +5,17 @@ import whois
 import argparse
 # libreri to use re.match and r' '
 import re
-# check if the domain is valide by tek the domain entre bby the user
+
+
+# check if the domain is valide by tek the domain entre by the user
 # and comperte to pattern 
 def check_validition_domain(domain):
     pattern = r'^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
     if not re.match(pattern,domain):
-        raise ValueError(f"errer :\' {domain} \' is not a doain name ")
+        raise argparse.ArgumentTypeError(f"errer :\' {domain} \' is not a doain name ")
     return domain
 #------------------------------------------------------------------
+
 # CLI code 
 parser = argparse.ArgumentParser(
     description="port scaning"
@@ -20,11 +23,14 @@ parser = argparse.ArgumentParser(
 parser.add_argument(
     '-d' , '--domain'  ,
     required=True       ,
-    help="domain whant to scan"
+    # type mean before storing this value, run it through this function first
+    type=check_validition_domain,
+    help="domain whant to scan",
 )
 parser.add_argument(
     '-f','--full'   ,
-    action="",
+    # action mean if he writhe arg.full == TRUE if not arg.full == False
+    action='store_true' ,
     help="scan evrything "
 )
 parser.add_argument(
@@ -33,4 +39,6 @@ parser.add_argument(
 )
 args = parser.parse_args()
 #------------------------------------------------------------------
-# check if the domain is writhe
+# 
+
+
