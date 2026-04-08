@@ -1,7 +1,6 @@
 #start 4/6/2026
 # end  
-
-import whois
+import whois_fonction
 import argparse
 # libreri to use re.match and r' '
 import re
@@ -15,7 +14,6 @@ def check_validition_domain(domain):
         raise argparse.ArgumentTypeError(f"errer :\' {domain} \' is not a doain name ")
     return domain
 #------------------------------------------------------------------
-
 # CLI code 
 parser = argparse.ArgumentParser(
     description="port scaning"
@@ -39,6 +37,13 @@ parser.add_argument(
 )
 args = parser.parse_args()
 #------------------------------------------------------------------
-# 
+#print the information with whois libreri
+try:
+   information =whois_fonction.fwhois(args.domain,args.full)
+   for key , value in  information.items():
+       print(f"{key:15} : {value}" ,end="\n\n")
+except Exception as e :
+    print(e)
+
 
 
