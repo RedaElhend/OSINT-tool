@@ -2,6 +2,7 @@
 # end  
 import whois_fonction
 import argparse
+import dnss
 # libreri to use re.match and r' '
 import re
 
@@ -16,7 +17,7 @@ def check_validition_domain(domain):
 #------------------------------------------------------------------
 # CLI code 
 parser = argparse.ArgumentParser(
-    description="port scaning"
+    description="OSINT tool (DNS + WHOIS lookup)"
 )
 parser.add_argument(
     '-d' , '--domain'  ,
@@ -44,6 +45,15 @@ try:
        print(f"{key:15} : {value}" ,end="\n\n")
 except Exception as e :
     print(e)
+#------------------------------------------------------------------
+# the part of the dns 
+try:
+    information=dnss.fdns(args.domain,args.full)
+    for key , value in  information.items():
+       print(f"{key:15} : {value}" ,end="\n\n")
+except Exception as e :
+    print(e)
+#------------------------------------------------------------------
 
 
 

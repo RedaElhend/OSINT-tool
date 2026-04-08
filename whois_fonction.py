@@ -7,24 +7,24 @@ def clean(variable):
         return variable
 
 def fwhois(domain ,full=False):
-    inforamtion=whois.whois(domain)
-    resulet={
-        "creation_date ":clean(inforamtion.creation_date),
-        "expiration_date ":clean(inforamtion.expiration_date),
-        "name_servers ":clean(inforamtion.name_servers),
-        "org ":clean(inforamtion.org),
-        "country ":clean(inforamtion.country),
-        "status ":clean(inforamtion.status),
+    information=whois.whois(domain)
+    result={
+        "creation_date":clean(information.creation_date),
+        "expiration_date":clean(information.expiration_date),
+        "name_servers":clean(information.name_servers),
+        "org":clean(information.org),
+        "country":clean(information.country),
+        "status":clean(information.status),
     }
     if full:
-        resulet.update({
-            "domain :":clean(inforamtion.domain_name),
-            "registrar :":clean(inforamtion.registrar),
-            "registrar_url :":clean(inforamtion.registrar_url),
-            "whois_server :":clean(inforamtion.whois_server),
-            "updated_date :":clean(inforamtion.updated_date),
-            "emails :":clean(inforamtion.emails),
-            "dnssec :":clean(inforamtion.dnssec),
+        result.update({
+            "domain":clean(information.domain_name),
+            "registrar":clean(information.registrar),
+            "registrar_url":clean(information.registrar_url),
+            "whois_server":clean(information.whois_server),
+            "updated_date":clean(information.updated_date),
+            "emails":clean(information.emails),
+            "dnssec":clean(information.dnssec),
         })
     
-    return resulet
+    return result
